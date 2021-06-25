@@ -27,6 +27,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
+
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }
@@ -61,6 +64,10 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+test {
+	useJUnitPlatform()
 }
 
 // configure the maven publication
